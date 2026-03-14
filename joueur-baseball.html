@@ -128,9 +128,12 @@
     ══════════════════════════════════════════ */
     .hero {
       position: relative;
-      background: linear-gradient(180deg, #0d1d41 0%, var(--gris-fonce) 100%);
+      background-color: linear-gradient(180deg, #0d1d41 0%, var(--gris-fonce) 100%);
+      background-image: url('assets/images/IMG_8894.jpg');
+      background-size: cover;
       padding: 3.5rem 4rem 2.5rem;
       overflow: hidden;
+      min-height: initial;
     }
 
     .hero::before {
@@ -210,7 +213,7 @@
       display: grid;
       grid-template-columns: 420px 1fr;
       gap: 0;
-      padding: 3rem 4rem;
+      padding: 5rem 4rem;
       align-items: start;
     }
 
@@ -651,11 +654,7 @@
         <div class="photo-frame">
           <!-- Remplacer par <img src="photo.jpg" alt="Marco Tremblay"> -->
           <div class="photo-placeholder">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-              <circle cx="40" cy="28" r="18" stroke="white" stroke-width="3"/>
-              <path d="M8 72c0-17.673 14.327-32 32-32s32 14.327 32 32" stroke="white" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            <span class="photo-placeholder-text">Photo du joueur</span>
+            <img src="assets/images/portraits/2026/lecault.png" alt="">
           </div>
         </div>
         <div class="photo-overlay">
