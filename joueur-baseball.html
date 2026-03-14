@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Profil Joueur — Baseball</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <title>Marco Tremblay — #27</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --rouge: #c20f2f;
-      --marine: #0d1d41;
-      --blanc: #fff;
-      --gris-fonce: #0a0f1a;
-      --gris-moyen: #111827;
-      --gris-bordure: #1e2d4a;
-      --rouge-sombre: #8c0a21;
-      --texte-muted: #6b7fa3;
+      --rouge:       #c20f2f;
+      --rouge-sombre:#8c0a21;
+      --marine:      #0d1d41;
+      --blanc:       #fff;
+      --gris-fonce:  #0a0f1a;
+      --gris-moyen:  #111827;
+      --surface:     #0e1422;
+      --surface2:    #141c2e;
+      --gris-bordure:#1e2d4a;
+      --bord:        #222d45;
+      --muted:       #6b7fa3;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Barlow', sans-serif;
@@ -27,7 +31,9 @@
       overflow-x: hidden;
     }
 
-    /* ── NAVIGATION ───────────────────────────────────── */
+    /* ══════════════════════════════════════════
+       NAVIGATION — version 1
+    ══════════════════════════════════════════ */
     nav {
       position: sticky;
       top: 0;
@@ -50,14 +56,11 @@
     }
 
     .logo-placeholder {
-      width: 48px;
-      height: 48px;
+      width: 48px; height: 48px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--rouge) 0%, var(--rouge-sombre) 100%);
       border: 2px solid rgba(255,255,255,0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.1rem;
       letter-spacing: 0.05em;
@@ -86,7 +89,7 @@
       font-size: 0.85rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--texte-muted);
+      color: var(--muted);
       text-decoration: none;
       transition: color 0.2s;
       position: relative;
@@ -95,18 +98,17 @@
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0; right: 0;
+      bottom: -4px; left: 0; right: 0;
       height: 2px;
       background: var(--rouge);
       transform: scaleX(0);
       transition: transform 0.2s;
     }
 
-    .nav-links a:hover { color: var(--blanc); }
-    .nav-links a:hover::after { transform: scaleX(1); }
-    .nav-links a.active { color: var(--blanc); }
-    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a:hover       { color: var(--blanc); }
+    .nav-links a:hover::after{ transform: scaleX(1); }
+    .nav-links a.active      { color: var(--blanc); }
+    .nav-links a.active::after{ transform: scaleX(1); }
 
     .nav-badge {
       background: var(--rouge);
@@ -120,7 +122,9 @@
       text-transform: uppercase;
     }
 
-    /* ── HERO / NOM ──────────────────────────────────── */
+    /* ══════════════════════════════════════════
+       HERO — version 1
+    ══════════════════════════════════════════ */
     .hero {
       position: relative;
       background: linear-gradient(180deg, #0d1d41 0%, var(--gris-fonce) 100%);
@@ -130,17 +134,15 @@
 
     .hero::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background:
         radial-gradient(ellipse 60% 80% at 80% 50%, rgba(194,15,47,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(13,29,65,0.8) 0%, transparent 60%);
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(13,29,65,0.8)   0%, transparent 60%);
     }
 
     .hero-number-bg {
       position: absolute;
-      right: 3rem;
-      top: 50%;
+      right: 3rem; top: 50%;
       transform: translateY(-50%);
       font-family: 'Bebas Neue', sans-serif;
       font-size: 18rem;
@@ -151,10 +153,7 @@
       letter-spacing: -0.05em;
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-    }
+    .hero-inner { position: relative; z-index: 1; }
 
     .hero-position-tag {
       display: inline-flex;
@@ -165,14 +164,14 @@
       font-size: 0.78rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--rouge);
+      /* blanc sur dégradé sombre → lisible */
+      color: rgba(255,255,255,0.6);
       margin-bottom: 0.75rem;
     }
 
     .hero-position-tag::before {
       content: '';
-      width: 24px;
-      height: 2px;
+      width: 24px; height: 2px;
       background: var(--rouge);
     }
 
@@ -194,7 +193,7 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1rem;
       letter-spacing: 0.15em;
-      color: var(--texte-muted);
+      color: var(--muted);
       margin-top: 1rem;
     }
 
@@ -203,7 +202,9 @@
       font-size: 1.4rem;
     }
 
-    /* ── CONTENU PRINCIPAL ───────────────────────────── */
+    /* ══════════════════════════════════════════
+       LAYOUT PRINCIPAL — version 1
+    ══════════════════════════════════════════ */
     .main-content {
       display: grid;
       grid-template-columns: 420px 1fr;
@@ -212,7 +213,9 @@
       align-items: start;
     }
 
-    /* ── PHOTO 3D ─────────────────────────────────────── */
+    /* ══════════════════════════════════════════
+       PHOTO 3D — version 1
+    ══════════════════════════════════════════ */
     .photo-wrapper {
       perspective: 1000px;
       padding-right: 2rem;
@@ -226,10 +229,6 @@
       cursor: default;
     }
 
-    .photo-card:hover {
-      transform: rotateY(-5deg) rotateX(1deg) scale(1.02);
-    }
-
     .photo-frame {
       border-radius: 4px;
       overflow: hidden;
@@ -241,40 +240,31 @@
         inset 0 0 0 1px rgba(255,255,255,0.05);
       aspect-ratio: 3/4;
       background: var(--gris-moyen);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
     }
 
     .photo-placeholder {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background: linear-gradient(160deg, #1a2a4a 0%, #0d1d41 40%, #0a0f1a 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       gap: 1rem;
       min-height: 440px;
     }
 
-    .photo-placeholder svg {
-      opacity: 0.15;
-    }
+    .photo-placeholder svg { opacity: 0.15; }
 
     .photo-placeholder-text {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.78rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--texte-muted);
+      color: var(--muted);
     }
 
     .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
     }
 
     .photo-overlay {
@@ -286,261 +276,312 @@
 
     .photo-overlay-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       letter-spacing: 0.1em;
+      color: var(--blanc);
     }
 
     .photo-overlay-pos {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--rouge);
-    }
-
-    /* ── STATISTIQUES ─────────────────────────────────── */
-    .stats-section {
-      padding-left: 1rem;
-    }
-
-    .stats-section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
-      letter-spacing: 0.15em;
-      color: var(--blanc);
-      margin-bottom: 0.25rem;
-    }
-
-    .stats-subtitle {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--rouge);
-      margin-bottom: 2rem;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--gris-bordure);
-      border: 1px solid var(--gris-bordure);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-    }
-
-    .stat-cell {
-      background: var(--gris-moyen);
-      padding: 1.25rem 1rem;
-      text-align: center;
-      transition: background 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-cell::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: transparent;
-      transition: background 0.2s;
-    }
-
-    .stat-cell:hover { background: #161f35; }
-    .stat-cell:hover::before { background: var(--rouge); }
-
-    .stat-cell.highlight {
-      background: linear-gradient(135deg, rgba(194,15,47,0.12) 0%, rgba(194,15,47,0.04) 100%);
-    }
-
-    .stat-cell.highlight::before { background: var(--rouge); }
-
-    .stat-value {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.6rem;
-      line-height: 1;
-      color: var(--blanc);
-      letter-spacing: 0.02em;
-    }
-
-    .stat-cell.highlight .stat-value {
-      color: var(--rouge);
-    }
-
-    .stat-label {
-      font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--texte-muted);
-      margin-top: 0.3rem;
+      /* blanc atténué sur marine → lisible */
+      color: rgba(255,255,255,0.55);
     }
 
-    /* ── BARRE DE PROGRESSION ─────────────────────────── */
-    .bars-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--texte-muted);
-      margin-bottom: 1.25rem;
-    }
-
-    .bar-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 0.85rem;
-    }
-
-    .bar-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--texte-muted);
-      width: 110px;
-      flex-shrink: 0;
-    }
-
-    .bar-track {
-      flex: 1;
-      height: 6px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .bar-fill {
-      height: 100%;
-      border-radius: 3px;
-      background: linear-gradient(90deg, var(--rouge-sombre), var(--rouge));
-      animation: fillBar 1.2s cubic-bezier(0.23,1,0.32,1) forwards;
-      transform-origin: left;
-    }
-
-    @keyframes fillBar {
-      from { width: 0; }
-    }
-
-    .bar-val {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.95rem;
-      color: var(--blanc);
-      width: 36px;
-      text-align: right;
-      flex-shrink: 0;
-    }
-
-    /* ── INFOS JOUEUR ─────────────────────────────────── */
+    /* ══════════════════════════════════════════
+       BIO GRID — version 1 (sous la photo)
+    ══════════════════════════════════════════ */
     .bio-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0.75rem;
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--gris-bordure);
+      margin-top: 1.5rem;
     }
 
     .bio-item {
       display: flex;
       flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--bord);
+      border-radius: 4px;
+      padding: 0.6rem 0.75rem;
     }
 
     .bio-key {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--texte-muted);
+      color: var(--muted);
       margin-bottom: 0.25rem;
     }
 
     .bio-val {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--blanc);
     }
 
-    /* ── FOOTER ──────────────────────────────────────── */
+    /* ══════════════════════════════════════════
+       COLONNE STATS — version 2
+    ══════════════════════════════════════════ */
+    .stats-col {
+      padding-left: 2rem;
+      border-left: 1px solid var(--bord);
+    }
+
+    .stats-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--bord);
+    }
+
+    .stats-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      color: var(--blanc);
+    }
+
+    .stats-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    /* Stat vedette */
+    .stat-hero {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-hero-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6rem;
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      color: var(--blanc);
+    }
+
+    .stat-hero-meta { padding-bottom: 0.6rem; }
+
+    .stat-hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .stat-hero-sub {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .stat-hero-sub strong { color: var(--blanc); }
+
+    /* Grille 4 stats secondaires */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--bord);
+      border: 1px solid var(--bord);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-box {
+      background: var(--surface);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      transition: background 0.15s;
+      position: relative;
+    }
+
+    .stat-box:hover { background: var(--surface2); }
+
+    .stat-box.accent-top::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--rouge);
+    }
+
+    .stat-box-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--blanc);
+    }
+
+    .stat-box-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+
+    /* ══════════════════════════════════════════
+       TABLEAU HISTORIQUE — version 2
+    ══════════════════════════════════════════ */
+    .table-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    thead tr {
+      background: var(--surface2);
+      border-bottom: 2px solid var(--rouge);
+    }
+
+    thead th {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--blanc);
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--bord);
+      transition: background 0.12s;
+    }
+
+    tbody tr:hover { background: var(--surface); }
+
+    tbody td {
+      padding: 0.65rem 0.85rem;
+      color: var(--blanc);
+      font-weight: 400;
+    }
+
+    tbody td.mono {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    tbody td.highlight-cell {
+      font-family: 'DM Mono', monospace;
+      font-weight: 600;
+      color: var(--blanc);
+    }
+
+    tbody tr.row-active td      { color: var(--blanc); }
+    tbody tr.row-active td.mono { color: rgba(255,255,255,0.6); }
+
+    /* ══════════════════════════════════════════
+       FOOTER — version 2
+    ══════════════════════════════════════════ */
     footer {
+      height: 70px;
       background: var(--marine);
-      border-top: 1px solid var(--gris-bordure);
-      padding: 2rem 4rem;
+      border-top: 1px solid var(--bord);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 2rem;
+      padding: 0 2.5rem;
+      margin-top: 3rem;
     }
 
-    .footer-left {
+    .footer-id {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
-    .footer-logo {
-      width: 36px;
-      height: 36px;
+    .footer-dot {
+      width: 8px; height: 8px;
       border-radius: 50%;
       background: var(--rouge);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.85rem;
-      color: #fff;
     }
 
-    .footer-team {
+    .footer-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
-    }
-
-    .footer-season {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
+      font-size: 0.95rem;
       letter-spacing: 0.12em;
-      color: var(--texte-muted);
+      color: var(--blanc);
+    }
+
+    .footer-team-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.45);
     }
 
     .footer-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.75rem;
     }
 
     .footer-links a {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--texte-muted);
+      color: rgba(255,255,255,0.4);
       text-decoration: none;
-      transition: color 0.2s;
+      transition: color 0.15s;
     }
 
     .footer-links a:hover { color: var(--blanc); }
 
     .footer-copy {
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.72rem;
-      color: var(--texte-muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.28);
     }
 
-    /* ── RESPONSIVE ──────────────────────────────────── */
-    @media (max-width: 900px) {
+    /* ══════════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim { animation: fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.15s; }
+    .d3 { animation-delay: 0.25s; }
+    .d4 { animation-delay: 0.35s; }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 960px) {
       .main-content {
         grid-template-columns: 1fr;
         padding: 2rem 1.5rem;
@@ -548,25 +589,26 @@
       .photo-wrapper {
         padding-right: 0;
         max-width: 320px;
-        margin: 0 auto 2rem;
+        margin: 0 auto 2.5rem;
       }
       .photo-card { transform: rotateY(-8deg) rotateX(2deg); }
+      .stats-col { padding-left: 0; border-left: none; border-top: 1px solid var(--bord); padding-top: 2rem; }
       .hero { padding: 2.5rem 1.5rem 2rem; }
-      nav { padding: 0 1.5rem; }
+      nav { padding: 0 1.25rem; }
       .nav-links { gap: 1rem; }
-      footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      footer { height: auto; padding: 1.25rem 1.5rem; flex-wrap: wrap; gap: 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- ══ NAVIGATION (V1) ══ -->
   <nav>
     <a href="#" class="nav-logo">
       <div class="logo-placeholder">MTL</div>
       <span class="nav-team-name">Les Bisons Desjardins de St-Eustache</span>
     </a>
-
     <ul class="nav-links">
       <li><a href="#" class="active">Profil</a></li>
       <li><a href="#">Équipe</a></li>
@@ -577,8 +619,8 @@
     </ul>
   </nav>
 
-  <!-- HERO — NOM DU JOUEUR -->
-  <section class="hero">
+  <!-- ══ HERO / NOM (V1) ══ -->
+  <section class="hero anim d1">
     <div class="hero-number-bg">27</div>
     <div class="hero-inner">
       <div class="hero-position-tag">Arrêt-court · Lanceur droitier</div>
@@ -592,14 +634,14 @@
     </div>
   </section>
 
-  <!-- PHOTO + STATISTIQUES -->
+  <!-- ══ PHOTO + STATS ══ -->
   <div class="main-content">
 
-    <!-- PHOTO 3D -->
-    <div class="photo-wrapper">
+    <!-- PHOTO 3D + BIO (V1) -->
+    <div class="photo-wrapper anim d2">
       <div class="photo-card" id="photoCard">
         <div class="photo-frame">
-          <!-- Remplacer le div ci-dessous par <img src="photo.jpg" alt="Marco Tremblay"> -->
+          <!-- Remplacer par <img src="photo.jpg" alt="Marco Tremblay"> -->
           <div class="photo-placeholder">
             <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
               <circle cx="40" cy="28" r="18" stroke="white" stroke-width="3"/>
@@ -613,78 +655,15 @@
           <div class="photo-overlay-pos">Arrêt-court · #27</div>
         </div>
       </div>
-    </div>
 
-    <!-- STATISTIQUES -->
-    <div class="stats-section">
-      <div class="stats-section-title">Statistiques</div>
-      <div class="stats-subtitle">Saison 2026 — Ligue Nationale</div>
-
-      <!-- Grille de stats principales -->
-      <div class="stats-grid">
-        <div class="stat-cell highlight">
-          <div class="stat-value">.342</div>
-          <div class="stat-label">Moyenne au bâton</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-value">24</div>
-          <div class="stat-label">Circuits</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-value">87</div>
-          <div class="stat-label">Points produits</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-value">112</div>
-          <div class="stat-label">Coups sûrs</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-value">63</div>
-          <div class="stat-label">Buts sur balles</div>
-        </div>
-        <div class="stat-cell">
-          <div class="stat-value">.978</div>
-          <div class="stat-label">% défensif</div>
-        </div>
-      </div>
-
-      <!-- Barres de performance -->
-      <div class="bars-title">Performance globale</div>
-
-      <div class="bar-row">
-        <span class="bar-label">Contact</span>
-        <div class="bar-track"><div class="bar-fill" style="width: 88%"></div></div>
-        <span class="bar-val">88</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">Puissance</span>
-        <div class="bar-track"><div class="bar-fill" style="width: 76%"></div></div>
-        <span class="bar-val">76</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">Vitesse</span>
-        <div class="bar-track"><div class="bar-fill" style="width: 82%"></div></div>
-        <span class="bar-val">82</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">Défense</span>
-        <div class="bar-track"><div class="bar-fill" style="width: 92%"></div></div>
-        <span class="bar-val">92</span>
-      </div>
-      <div class="bar-row">
-        <span class="bar-label">Bras</span>
-        <div class="bar-track"><div class="bar-fill" style="width: 79%"></div></div>
-        <span class="bar-val">79</span>
-      </div>
-
-      <!-- Bio -->
+      <!-- BIO sous la photo -->
       <div class="bio-grid">
         <div class="bio-item">
           <span class="bio-key">Nationalité</span>
           <span class="bio-val">🇨🇦 Canadien</span>
         </div>
         <div class="bio-item">
-          <span class="bio-key">Date de naissance</span>
+          <span class="bio-key">Naissance</span>
           <span class="bio-val">14 mars 1998</span>
         </div>
         <div class="bio-item">
@@ -697,27 +676,147 @@
         </div>
         <div class="bio-item">
           <span class="bio-key">Bâton / Lancer</span>
-          <span class="bio-val">Droitier / Droitier</span>
+          <span class="bio-val">Droit / Droit</span>
         </div>
         <div class="bio-item">
           <span class="bio-key">Contrat</span>
           <span class="bio-val">6 ans · 2029</span>
         </div>
       </div>
-
     </div>
-  </div>
 
-  <!-- FOOTER -->
+    <!-- STATISTIQUES (V2) -->
+    <div class="stats-col anim d3">
+
+      <div class="stats-header">
+        <span class="stats-title">Statistiques</span>
+        <span class="stats-year">Ligue Nationale · 2026</span>
+      </div>
+
+      <!-- Stat vedette -->
+      <div class="stat-hero">
+        <div class="stat-hero-val">.342</div>
+        <div class="stat-hero-meta">
+          <div class="stat-hero-label">Moyenne au bâton</div>
+          <div class="stat-hero-sub"><strong>3e</strong> dans la ligue cette saison</div>
+        </div>
+      </div>
+
+      <!-- Grille secondaire -->
+      <div class="stats-row">
+        <div class="stat-box accent-top">
+          <div class="stat-box-val">24</div>
+          <div class="stat-box-label">Circuits</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-val">87</div>
+          <div class="stat-box-label">Points produits</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-val">112</div>
+          <div class="stat-box-label">Coups sûrs</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-box-val">63</div>
+          <div class="stat-box-label">Buts sur balles</div>
+        </div>
+      </div>
+
+      <!-- Tableau historique -->
+      <div class="anim d4">
+        <div class="table-label">Historique par saison</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Saison</th>
+              <th>MJ</th>
+              <th>MPB</th>
+              <th>CS</th>
+              <th>2B</th>
+              <th>3B</th>
+              <th>CC</th>
+              <th>PP</th>
+              <th>BSB</th>
+              <th>%OBP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="row-active">
+              <td class="highlight-cell">2026</td>
+              <td class="mono">108</td>
+              <td class="highlight-cell">.342</td>
+              <td class="mono">112</td>
+              <td class="mono">22</td>
+              <td class="mono">5</td>
+              <td class="mono">24</td>
+              <td class="mono">87</td>
+              <td class="mono">63</td>
+              <td class="mono">.418</td>
+            </tr>
+            <tr>
+              <td class="highlight-cell">2025</td>
+              <td class="mono">155</td>
+              <td class="highlight-cell">.311</td>
+              <td class="mono">143</td>
+              <td class="mono">28</td>
+              <td class="mono">4</td>
+              <td class="mono">19</td>
+              <td class="mono">74</td>
+              <td class="mono">57</td>
+              <td class="mono">.389</td>
+            </tr>
+            <tr>
+              <td class="highlight-cell">2023</td>
+              <td class="mono">148</td>
+              <td class="highlight-cell">.298</td>
+              <td class="mono">131</td>
+              <td class="mono">24</td>
+              <td class="mono">6</td>
+              <td class="mono">16</td>
+              <td class="mono">68</td>
+              <td class="mono">49</td>
+              <td class="mono">.371</td>
+            </tr>
+            <tr>
+              <td class="highlight-cell">2022</td>
+              <td class="mono">141</td>
+              <td class="highlight-cell">.279</td>
+              <td class="mono">118</td>
+              <td class="mono">19</td>
+              <td class="mono">3</td>
+              <td class="mono">12</td>
+              <td class="mono">55</td>
+              <td class="mono">44</td>
+              <td class="mono">.355</td>
+            </tr>
+            <tr>
+              <td class="highlight-cell">2021</td>
+              <td class="mono">132</td>
+              <td class="highlight-cell">.264</td>
+              <td class="mono">104</td>
+              <td class="mono">16</td>
+              <td class="mono">2</td>
+              <td class="mono">9</td>
+              <td class="mono">47</td>
+              <td class="mono">38</td>
+              <td class="mono">.338</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div><!-- /stats-col -->
+  </div><!-- /main-content -->
+
+  <!-- ══ FOOTER (V2) ══ -->
   <footer>
-    <div class="footer-left">
-      <div class="footer-logo">MTL</div>
+    <div class="footer-id">
+      <div class="footer-dot"></div>
       <div>
-        <div class="footer-team">Les Bisons de St-Eustache</div>
-        <div class="footer-season">Saison officielle 2026</div>
+        <div class="footer-name">Les Bisons de St-Eustache</div>
+        <div class="footer-team-tag">LIGUE NATIONALE · DIVISION EST</div>
       </div>
     </div>
-
     <div class="footer-links">
       <a href="#">Accueil</a>
       <a href="#">Équipe</a>
@@ -725,21 +824,18 @@
       <a href="#">Contact</a>
       <a href="#">Accessibilité</a>
     </div>
-
-    <div class="footer-copy">© 2026 Les Bisons de St-Eustache. Tous droits réservés.</div>
+    <div class="footer-copy">© 2026 Les Bisons de St-Eustache</div>
   </footer>
 
   <script>
-    // Effet parallaxe léger sur la photo au survol
-    const card = document.getElementById('photoCard');
+    // Parallaxe souris sur la photo
+    const card    = document.getElementById('photoCard');
     const wrapper = card.parentElement;
 
     wrapper.addEventListener('mousemove', (e) => {
       const rect = wrapper.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) / rect.width;
-      const dy = (e.clientY - cy) / rect.height;
+      const dx = (e.clientX - rect.left - rect.width  / 2) / rect.width;
+      const dy = (e.clientY - rect.top  - rect.height / 2) / rect.height;
       card.style.transform = `rotateY(${-14 + dx * 8}deg) rotateX(${3 - dy * 4}deg) scale(1.01)`;
     });
 
