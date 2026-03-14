@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calendrier 2026 — Les Bisons de St-Eustache</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/app-mobile-first.css">
+</head>
+<body>
+
+        <!-- ══ NAV ══ -->
+        <nav>
+            <a href="index.html" class="nav-logo">
+                <div class="logo-circle">
+                    <img
+                        src="assets/images/bisons_logo_no_bg.png"
+                        alt="Bisons de St-Eustache"
+                    />
+                </div>
+                <span class="nav-team"
+                    >Les Bisons <span class="desjardins">Desjardins</span> de
+                    St-Eustache</span
+                >
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="#nouvelles">Nouvelles</a></li>
+                <li><a href="#equipe">Équipe</a></li>
+                <li><a href="stats.html">Statistiques</a></li>
+                <li><a class="active" href="calendrier.html">Calendrier</a></li>
+                <li><span class="nav-badge">Saison 2026</span></li>
+            </ul>
+        </nav>
+
+  <!-- ══ PAGE HEADER ══ -->
+  <div class="page-header .cal-header anim d1">
+    <div class="page-header-bg">CALENDRIER</div>
+    <div class="page-header-inner cal-inner">
+      <div>
+        <div class="page-eyebrow">LBJEQ · Division Est</div>
+        <h1 class="page-title">Calendrier <span>2026</span></h1>
+        <p class="page-subtitle">Saison régulière · Séries éliminatoires · Tournois</p>
+      </div>
+      <div class="header-bilan">
+        <div class="bilan-cell win">
+          <div class="bilan-val" id="hdr-v">14</div>
+          <div class="bilan-label">Victoires</div>
+        </div>
+        <div class="bilan-cell loss">
+          <div class="bilan-val" id="hdr-d">4</div>
+          <div class="bilan-label">Défaites</div>
+        </div>
+        <div class="bilan-cell">
+          <div class="bilan-val" id="hdr-pct">.778</div>
+          <div class="bilan-label">% Victoires</div>
+        </div>
+        <div class="bilan-cell">
+          <div class="bilan-val" id="hdr-rest">6</div>
+          <div class="bilan-label">À jouer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barre de progression saison -->
+  <div class="season-progress-bar">
+    <div class="season-progress-fill" id="seasonFill" style="width:0%"></div>
+    <div class="season-progress-marker" id="seasonMarker" style="left:0%"></div>
+  </div>
+
+  <!-- ══ BILAN RAPIDE ══ -->
+  <div class="bilan-section anim d2">
+    <div class="bilan-block win-block">
+      <div class="bilan-block-val">14</div>
+      <div class="bilan-block-label">Victoires</div>
+    </div>
+    <div class="bilan-block loss-block">
+      <div class="bilan-block-val">4</div>
+      <div class="bilan-block-label">Défaites</div>
+    </div>
+    <div class="bilan-block pct-block">
+      <div class="bilan-block-val">.778</div>
+      <div class="bilan-block-label">Pourcentage</div>
+    </div>
+    <div class="bilan-block">
+      <div class="bilan-block-val">42</div>
+      <div class="bilan-block-label">Points marqués</div>
+    </div>
+    <div class="bilan-block">
+      <div class="bilan-block-val">1re</div>
+      <div class="bilan-block-label">Position division</div>
+    </div>
+  </div>
+
+  <!-- ══ BODY ══ -->
+  <div class="page-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar anim d3">
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Afficher</div>
+        <div class="filter-list">
+          <button class="filter-item active" onclick="setFilter('tous', this)">
+            <span class="filter-left"><span class="filter-dot blanc"></span>Tous les matchs</span>
+            <span class="filter-count" id="fc-tous">24</span>
+          </button>
+          <button class="filter-item" onclick="setFilter('v', this)">
+            <span class="filter-left"><span class="filter-dot vert"></span>Victoires</span>
+            <span class="filter-count" id="fc-v">14</span>
+          </button>
+          <button class="filter-item" onclick="setFilter('d', this)">
+            <span class="filter-left"><span class="filter-dot rouge"></span>Défaites</span>
+            <span class="filter-count" id="fc-d">4</span>
+          </button>
+          <button class="filter-item" onclick="setFilter('avenir', this)">
+            <span class="filter-left"><span class="filter-dot gris"></span>À venir</span>
+            <span class="filter-count" id="fc-avenir">6</span>
+          </button>
+          <button class="filter-item" onclick="setFilter('domicile', this)">
+            <span class="filter-left"><span class="filter-dot blanc"></span>Domicile</span>
+            <span class="filter-count" id="fc-dom">12</span>
+          </button>
+          <button class="filter-item" onclick="setFilter('exterieur', this)">
+            <span class="filter-left"><span class="filter-dot blanc"></span>Extérieur</span>
+            <span class="filter-count" id="fc-ext">12</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Type</div>
+        <div class="filter-list">
+          <button class="filter-item" onclick="setFilter('saison', this)">
+            <span class="filter-left"><span class="filter-dot blanc"></span>Saison régulière</span>
+            <span class="filter-count">18</span>
+          </button>
+          <button class="filter-item" onclick="setFilter('serie', this)">
+            <span class="filter-left"><span class="filter-dot rouge"></span>Séries / Playoffs</span>
+            <span class="filter-count">4</span>
+          </button>
+          <button class="filter-item" onclick="setFilter('tournoi', this)">
+            <span class="filter-left"><span class="filter-dot gris"></span>Tournois</span>
+            <span class="filter-count">2</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Mini calendrier</div>
+        <div class="mini-cal" id="miniCal"></div>
+      </div>
+
+    </aside>
+
+    <!-- CONTENU CALENDRIER -->
+    <main class="cal-content anim d4">
+
+      <!-- Contrôles vue -->
+      <div class="cal-controls">
+        <div class="view-toggle">
+          <button class="view-btn active" onclick="setView('liste', this)">≡ Liste</button>
+          <button class="view-btn" onclick="setView('grille', this)">⊞ Grille</button>
+        </div>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Chercher un adversaire…" id="searchInput" oninput="handleSearch()"/>
+        </div>
+      </div>
+
+      <!-- VUE LISTE -->
+      <div id="view-liste"></div>
+
+      <!-- VUE GRILLE -->
+      <div id="view-grille"></div>
+
+    </main>
+  </div>
+
+<!-- ══ FOOTER ══ -->
+  <footer class="footer-compact">
+    <div class="footer-id">
+      <div class="footer-dot"></div>
+      <div>
+        <div class="footer-name">Les Bisons de St-Eustache</div>
+        <div class="footer-sub">LBJEQ · DIVISION EST</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="index.html#equipe">Équipe</a>
+      <a href="index.html#calendrier">Calendrier</a>
+      <a href="index.html#recrutement">Recrutement</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Les Bisons de St-Eustache</div>
+  </footer>
+
+  <script>
+  // ═══════════════════════════════════════════════════════════
+  //  DONNÉES
+  // ═══════════════════════════════════════════════════════════
+  const matchs = [
+    // Février
+    { id:1,  date:'2026-02-02', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Diamants de Québec',     score:'8-2',  res:'v', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:2,  date:'2026-02-09', jour:'Dim', type:'saison',  lieu:'exterieur', adv:'Pirates de Laval',       score:'4-6',  res:'d', heure:'14h00', terrain:'Complexe sportif Laval' },
+    { id:3,  date:'2026-02-16', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Ducs de Longueuil',     score:'9-4',  res:'v', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:4,  date:'2026-02-22', jour:'Sam', type:'tournoi', lieu:'exterieur', adv:'Tournoi hivernal — Laval', score:'5-2', res:'v', heure:'10h00', terrain:'Complexe sportif Laval' },
+    { id:5,  date:'2026-02-23', jour:'Dim', type:'saison',  lieu:'exterieur', adv:'Rocket de Coaticook',  score:'3-6',  res:'d', heure:'11h00', terrain:'Parc Alphonse-Desjardins' },
+    // Mars
+    { id:6,  date:'2026-03-02', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Diamants de Québec',     score:'5-1',  res:'v', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:7,  date:'2026-03-08', jour:'Sam', type:'serie',   lieu:'exterieur', adv:'Pirates de Laval',       score:'7-2',  res:'v', heure:'15h00', terrain:'Complexe sportif Laval', note:'Demi-finale' },
+    { id:8,  date:'2026-03-09', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Tyrans de Gatineau',     score:'6-3',  res:'v', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:9,  date:'2026-03-15', jour:'Sam', type:'serie',   lieu:'exterieur', adv:'Tyrans de Gatineau',     score:'',     res:'avenir', heure:'14h00', terrain:'Stade Municipal Gatineau', note:'Finale — Match 1' },
+    { id:10, date:'2026-03-16', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Rocket de Coaticook',  score:'',     res:'avenir', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:11, date:'2026-03-22', jour:'Sam', type:'serie',   lieu:'domicile',  adv:'Tyrans de Gatineau',     score:'',     res:'avenir', heure:'13h00', terrain:'Stade Jarry, Montréal', note:'Finale — Match 2' },
+    { id:12, date:'2026-03-23', jour:'Dim', type:'saison',  lieu:'exterieur', adv:'Ducs de Longueuil',     score:'',     res:'avenir', heure:'11h00', terrain:'Parc Lionel-Groulx' },
+    // Saison régulière passée (ajouts pour remplir le calendrier)
+    { id:13, date:'2026-01-12', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Tyrans de Gatineau',     score:'7-1',  res:'v', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:14, date:'2026-01-19', jour:'Dim', type:'saison',  lieu:'exterieur', adv:'Ducs de Longueuil',     score:'2-5',  res:'d', heure:'14h00', terrain:'Parc Lionel-Groulx' },
+    { id:15, date:'2026-01-26', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Rocket de Coaticook',  score:'6-2',  res:'v', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:16, date:'2026-01-05', jour:'Dim', type:'saison',  lieu:'exterieur', adv:'Diamants de Québec',     score:'4-3',  res:'v', heure:'13h00', terrain:'Stade Pelletier, Québec' },
+    { id:17, date:'2025-11-17', jour:'Dim', type:'tournoi', lieu:'exterieur', adv:'Tournoi d\'automne — Québec', score:'8-4', res:'v', heure:'09h00', terrain:'Stade Pelletier, Québec' },
+    { id:18, date:'2025-11-24', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Pirates de Laval',       score:'5-3',  res:'v', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:19, date:'2025-12-01', jour:'Dim', type:'saison',  lieu:'exterieur', adv:'Tyrans de Gatineau',     score:'3-4',  res:'d', heure:'14h00', terrain:'Stade Municipal Gatineau' },
+    { id:20, date:'2025-12-08', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Diamants de Québec',     score:'9-2',  res:'v', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:21, date:'2025-12-15', jour:'Dim', type:'saison',  lieu:'exterieur', adv:'Rocket de Coaticook',  score:'6-1',  res:'v', heure:'11h00', terrain:'Parc Alphonse-Desjardins' },
+    { id:22, date:'2025-12-22', jour:'Dim', type:'saison',  lieu:'domicile',  adv:'Ducs de Longueuil',     score:'7-4',  res:'v', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+    { id:23, date:'2026-03-29', jour:'Sam', type:'serie',   lieu:'exterieur', adv:'Tyrans de Gatineau',     score:'',     res:'avenir', heure:'14h00', terrain:'Stade Municipal Gatineau', note:'Finale — Match 3 (si néc.)' },
+    { id:24, date:'2026-04-05', jour:'Sam', type:'saison',  lieu:'domicile',  adv:'Pirates de Laval',       score:'',     res:'avenir', heure:'13h00', terrain:'Stade Jarry, Montréal' },
+  ];
+
+  // trier par date
+  matchs.sort((a,b) => new Date(a.date) - new Date(b.date));
+
+  // ═══════════════════════════════════════════════════════════
+  //  ÉTAT
+  // ═══════════════════════════════════════════════════════════
+  let activeFilter = 'tous';
+  let activeView   = 'liste';
+  let searchTerm   = '';
+
+  const TODAY = '2026-03-13'; // date de référence
+
+  // ═══════════════════════════════════════════════════════════
+  //  FILTRAGE
+  // ═══════════════════════════════════════════════════════════
+  function filteredMatchs() {
+    return matchs.filter(m => {
+      const search = searchTerm.toLowerCase();
+      if (search && !m.adv.toLowerCase().includes(search)) return false;
+      if (activeFilter === 'tous')      return true;
+      if (activeFilter === 'v')         return m.res === 'v';
+      if (activeFilter === 'd')         return m.res === 'd';
+      if (activeFilter === 'avenir')    return m.res === 'avenir';
+      if (activeFilter === 'domicile')  return m.lieu === 'domicile';
+      if (activeFilter === 'exterieur') return m.lieu === 'exterieur';
+      if (activeFilter === 'saison')    return m.type === 'saison';
+      if (activeFilter === 'serie')     return m.type === 'serie';
+      if (activeFilter === 'tournoi')   return m.type === 'tournoi';
+      return true;
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  HELPERS
+  // ═══════════════════════════════════════════════════════════
+  function monthKey(dateStr) {
+    const d = new Date(dateStr); 
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+  }
+
+  function monthLabel(key) {
+    const [y, m] = key.split('-');
+    const months = ['Janvier','Février','Mars','Avril','Mai','Juin',
+                    'Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+    return `${months[parseInt(m)-1]} ${y}`;
+  }
+
+  function dayNum(dateStr) { return new Date(dateStr).getDate(); }
+
+  function typeClass(type) {
+    return { saison:'badge-saison', serie:'badge-serie', demi:'badge-demi',
+             finale:'badge-finale', pratique:'badge-pratique', tournoi:'badge-tournoi' }[type] || 'badge-saison';
+  }
+
+  function typeLabel(type, note) {
+    if (note) return note;
+    return { saison:'Saison régulière', serie:'Séries', tournoi:'Tournoi' }[type] || type;
+  }
+
+  function lieuIcon(lieu) { return lieu === 'domicile' ? '🏠' : '✈️'; }
+
+  // ═══════════════════════════════════════════════════════════
+  //  RENDU LISTE
+  // ═══════════════════════════════════════════════════════════
+  function renderListe() {
+    const data = filteredMatchs();
+    const grouped = {};
+    data.forEach(m => {
+      const k = monthKey(m.date);
+      if (!grouped[k]) grouped[k] = [];
+      grouped[k].push(m);
+    });
+
+    const months = Object.keys(grouped).sort();
+    let html = '';
+
+    if (months.length === 0) {
+      html = `<div style="padding:3rem;text-align:center;color:var(--muted);font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.12em;">Aucun match trouvé</div>`;
+    }
+
+    months.forEach(mk => {
+      const games = grouped[mk];
+      html += `<div class="month-block">
+        <div class="month-header">
+          <span class="month-name">${monthLabel(mk)}</span>
+          <div class="month-line"></div>
+          <span class="month-count">${games.length} match${games.length>1?'s':''}</span>
+        </div>`;
+
+      games.forEach(m => {
+        const isToday = m.date === TODAY;
+        const cardClass = isToday ? 'today-game' : m.res;
+        let resultHtml = '';
+        if (m.res === 'v') {
+          resultHtml = `<div class="result-pill v">V</div><div class="game-score-display">${m.score}</div><div class="game-score-sub">${m.lieu === 'domicile' ? 'Domicile' : 'Extérieur'}</div>`;
+        } else if (m.res === 'd') {
+          resultHtml = `<div class="result-pill d">D</div><div class="game-score-display">${m.score}</div><div class="game-score-sub">${m.lieu === 'domicile' ? 'Domicile' : 'Extérieur'}</div>`;
+        } else if (isToday) {
+          resultHtml = `<div class="result-pill today">EN COURS</div><div class="game-time">${m.heure}</div>`;
+        } else {
+          resultHtml = `<div class="result-pill avenir">À venir</div><div class="game-time">${m.heure}</div>`;
+        }
+
+        html += `<div class="game-card ${cardClass}">
+          <div class="game-date-col">
+            <div class="game-day-num">${dayNum(m.date)}</div>
+            <div class="game-day-name">${m.jour}</div>
+          </div>
+          <div class="game-info-col">
+            <div class="game-meta-row">
+              <span class="game-type-badge ${typeClass(m.type)}">${typeLabel(m.type, m.note||null)}</span>
+              <span class="game-num">Match #${m.id}</span>
+            </div>
+            <div class="game-vs">${lieuIcon(m.lieu)} c. ${m.adv}</div>
+            <div class="game-details-row">
+              <span class="game-detail">📍 ${m.terrain}</span>
+              <span class="game-detail">🕐 ${m.heure}</span>
+            </div>
+          </div>
+          <div class="game-result-col">${resultHtml}</div>
+        </div>`;
+      });
+
+      html += `</div>`;
+    });
+
+    document.getElementById('view-liste').innerHTML = html;
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  RENDU GRILLE MENSUELLE
+  // ═══════════════════════════════════════════════════════════
+  function renderGrille() {
+    const data = filteredMatchs();
+    const gamesByDate = {};
+    data.forEach(m => { gamesByDate[m.date] = m; });
+
+    // Mois à afficher : tous les mois de la saison
+    const allMonths = [...new Set(matchs.map(m => monthKey(m.date)))].sort();
+    const JOURS = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+    let html = '';
+
+    allMonths.forEach(mk => {
+      const [y, mo] = mk.split('-').map(Number);
+      const firstDay = new Date(y, mo-1, 1).getDay();
+      const daysInMonth = new Date(y, mo, 0).getDate();
+
+      html += `<div class="grid-month">
+        <div class="grid-month-title">${monthLabel(mk)}</div>
+        <div class="cal-grid">`;
+
+      JOURS.forEach(j => { html += `<div class="cal-dow-header">${j}</div>`; });
+
+      // cases vides de début
+      for (let i=0; i<firstDay; i++) {
+        html += `<div class="cal-cell empty"></div>`;
+      }
+
+      for (let d=1; d<=daysInMonth; d++) {
+        const dateStr = `${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        const game = gamesByDate[dateStr];
+        const isToday = dateStr === TODAY;
+        let cls = '';
+        if (isToday) cls += ' today';
+        if (game) cls += ' has-game';
+
+        html += `<div class="cal-cell${cls}">
+          <div class="cal-cell-day">${d}</div>`;
+
+        if (game) {
+          const evCls = isToday ? 'today-ev' : game.res;
+          const shortAdv = game.adv.replace(/^.*?\s/, '').substring(0,14);
+          html += `<div class="cal-event ${evCls}" title="${game.adv}">${game.res === 'v' ? '✓' : game.res === 'd' ? '✗' : '●'} ${shortAdv}</div>`;
+        }
+
+        html += `</div>`;
+      }
+
+      // cases vides de fin
+      const total = firstDay + daysInMonth;
+      const remainder = total % 7;
+      if (remainder !== 0) {
+        for (let i=0; i<7-remainder; i++) {
+          html += `<div class="cal-cell empty"></div>`;
+        }
+      }
+
+      html += `</div></div>`;
+    });
+
+    document.getElementById('view-grille').innerHTML = html;
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  MINI CALENDRIER SIDEBAR (mars 2026)
+  // ═══════════════════════════════════════════════════════════
+  function renderMiniCal() {
+    const y = 2026, mo = 3;
+    const firstDay = new Date(y, mo-1, 1).getDay();
+    const daysInMonth = new Date(y, mo, 0).getDate();
+    const JOURS = ['D','L','M','M','J','V','S'];
+
+    const gamesByDate = {};
+    matchs.forEach(m => { gamesByDate[m.date] = m; });
+
+    let html = `<div class="mini-cal-header">
+      <span class="mini-cal-month">Mars 2026</span>
+    </div>
+    <div class="mini-cal-grid">`;
+
+    JOURS.forEach(j => { html += `<div class="mini-cal-dow">${j}</div>`; });
+    for (let i=0; i<firstDay; i++) html += `<div class="mini-cal-day empty"></div>`;
+
+    for (let d=1; d<=daysInMonth; d++) {
+      const dateStr = `${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const game = gamesByDate[dateStr];
+      const isToday = dateStr === TODAY;
+      let cls = '';
+      if (isToday) cls += ' today';
+      if (game) { cls += ' has-game'; if (game.res==='v') cls+=' win'; else if(game.res==='d') cls+=' loss'; }
+      html += `<div class="mini-cal-day${cls}">${d}</div>`;
+    }
+
+    html += `</div>`;
+    document.getElementById('miniCal').innerHTML = html;
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  FILTRES & VUES
+  // ═══════════════════════════════════════════════════════════
+  function setFilter(filter, btn) {
+    activeFilter = filter;
+    document.querySelectorAll('.filter-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCurrent();
+  }
+
+  function setView(view, btn) {
+    activeView = view;
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('view-liste').style.display  = view === 'liste'  ? '' : 'none';
+    document.getElementById('view-grille').style.display = view === 'grille' ? '' : 'none';
+    renderCurrent();
+  }
+
+  function handleSearch() {
+    searchTerm = document.getElementById('searchInput').value;
+    renderCurrent();
+  }
+
+  function renderCurrent() {
+    if (activeView === 'liste') renderListe();
+    else renderGrille();
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  BARRE DE PROGRESSION SAISON
+  // ═══════════════════════════════════════════════════════════
+  function updateProgress() {
+    const joues  = matchs.filter(m => m.res !== 'avenir').length;
+    const total  = matchs.length;
+    const pct    = Math.round((joues / total) * 100);
+    setTimeout(() => {
+      document.getElementById('seasonFill').style.width  = pct + '%';
+      document.getElementById('seasonMarker').style.left = pct + '%';
+    }, 300);
+  }
+
+  // ═══════════════════════════════════════════════════════════
+  //  INIT
+  // ═══════════════════════════════════════════════════════════
+  renderListe();
+  renderGrille();
+  renderMiniCal();
+  updateProgress();
+
+  // Comptes sidebar
+  document.getElementById('fc-tous').textContent   = matchs.length;
+  document.getElementById('fc-v').textContent      = matchs.filter(m=>m.res==='v').length;
+  document.getElementById('fc-d').textContent      = matchs.filter(m=>m.res==='d').length;
+  document.getElementById('fc-avenir').textContent = matchs.filter(m=>m.res==='avenir').length;
+  document.getElementById('fc-dom').textContent    = matchs.filter(m=>m.lieu==='domicile').length;
+  document.getElementById('fc-ext').textContent    = matchs.filter(m=>m.lieu==='exterieur').length;
+  </script>
+
+</body>
+</html>

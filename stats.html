@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Statistiques — Les Bisons de St-Eustache</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/app-mobile-first.css">
+</head>
+<body>
+
+        <!-- ══ NAV ══ -->
+        <nav>
+            <a href="index.html" class="nav-logo">
+                <div class="logo-circle">
+                    <img
+                        src="assets/images/bisons_logo_no_bg.png"
+                        alt="Bisons de St-Eustache"
+                    />
+                </div>
+                <span class="nav-team"
+                    >Les Bisons <span class="desjardins">Desjardins</span> de
+                    St-Eustache</span
+                >
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="#nouvelles">Nouvelles</a></li>
+                <li><a href="#equipe">Équipe</a></li>
+                <li><a href="stats.html" class="active">Statistiques</a></li>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><span class="nav-badge">Saison 2026</span></li>
+            </ul>
+        </nav>
+
+  <!-- ══ PAGE HEADER ══ -->
+  <div class="page-header anim d1">
+    <div class="page-header-bg">STATS</div>
+    <div class="page-header-inner">
+      <div class="page-eyebrow">LBJEQ · Division Est</div>
+      <h1 class="page-title">Statistiques <span>2026</span></h1>
+      <p class="page-subtitle">Mises à jour après chaque match · 18 matchs disputés</p>
+    </div>
+  </div>
+
+  <!-- ══ RÉSUMÉ ÉQUIPE ══ -->
+  <div class="team-summary anim d2">
+    <div class="summary-cell">
+      <div class="summary-val">14-4</div>
+      <div class="summary-label">Bilan</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-val">.298</div>
+      <div class="summary-label">MPB équipe</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-val">134</div>
+      <div class="summary-label">Points marqués</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-val">3.18</div>
+      <div class="summary-label">MPM équipe</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-val">47</div>
+      <div class="summary-label">Circuits</div>
+    </div>
+    <div class="summary-cell">
+      <div class="summary-val">162</div>
+      <div class="summary-label">Retraits au bâton</div>
+    </div>
+  </div>
+
+  <!-- ══ CORPS DE PAGE ══ -->
+  <div class="stats-page">
+
+    <!-- ════ FRAPPEURS ════════════════════════════════════ -->
+    <div class="controls-bar anim d3">
+      <div class="tab-group">
+        <button class="tab-btn active" onclick="showTab('frappeurs', this)">Frappeurs</button>
+        <button class="tab-btn" onclick="showTab('lanceurs', this)">Lanceurs</button>
+      </div>
+      <div class="controls-right">
+        <span class="sort-label">Trier par</span>
+        <select class="sort-select" id="sortSelect" onchange="handleSort()">
+          <option value="mpb">Moyenne (MPB)</option>
+          <option value="cc">Circuits</option>
+          <option value="pp">Points produits</option>
+          <option value="cs">Coups sûrs</option>
+          <option value="mj">Matchs joués</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ── SECTION FRAPPEURS ── -->
+    <div id="section-frappeurs">
+
+      <div class="leaders-section anim d4">
+        <div class="leaders-label">Meneurs offensifs</div>
+        <div class="leaders-grid" id="leaders-frappeurs">
+          <!-- générés par JS -->
+        </div>
+      </div>
+
+      <div class="table-wrapper anim d4">
+        <table id="table-frappeurs">
+          <thead>
+            <tr>
+              <th onclick="sortTable('frappeurs','nom')">Joueur</th>
+              <th>Pos.</th>
+              <th onclick="sortTable('frappeurs','mj')" title="Matchs joués">MJ</th>
+              <th onclick="sortTable('frappeurs','ab')" title="Présences au bâton">AB</th>
+              <th onclick="sortTable('frappeurs','mpb')" class="sorted" title="Moyenne au bâton">MPB</th>
+              <th onclick="sortTable('frappeurs','cs')" title="Coups sûrs">CS</th>
+              <th onclick="sortTable('frappeurs','doubles')" title="Doubles">2B</th>
+              <th onclick="sortTable('frappeurs','triples')" title="Triples">3B</th>
+              <th onclick="sortTable('frappeurs','cc')" title="Circuits">CC</th>
+              <th onclick="sortTable('frappeurs','pp')" title="Points produits">PP</th>
+              <th onclick="sortTable('frappeurs','pts')" title="Points marqués">PTS</th>
+              <th onclick="sortTable('frappeurs','bsb')" title="Buts sur balles">BSB</th>
+              <th onclick="sortTable('frappeurs','rb')" title="Retraits au bâton">RB</th>
+              <th onclick="sortTable('frappeurs','obp')" title="Pourcentage sur les buts">%OBP</th>
+              <th onclick="sortTable('frappeurs','slg')" title="Puissance (SLG)">SLG</th>
+              <th onclick="sortTable('frappeurs','ops')" title="Efficacité offensive (OPS)">OPS</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-frappeurs"></tbody>
+        </table>
+        <div class="table-footer">
+          <span class="table-count" id="count-frappeurs">— joueurs</span>
+          <div class="legend">
+            <span class="legend-item"><abbr title="Matchs joués">MJ</abbr> = Matchs joués</span>
+            <span class="legend-item"><abbr title="Présences au bâton">AB</abbr> = Au bâton</span>
+            <span class="legend-item"><abbr title="Moyenne au bâton">MPB</abbr> = Moy. au bâton</span>
+            <span class="legend-item"><abbr title="Points produits">PP</abbr> = Pts produits</span>
+            <span class="legend-item"><abbr title="On-base plus slugging">OPS</abbr> = OBP + SLG</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SECTION LANCEURS ── -->
+    <div id="section-lanceurs" style="display:none;">
+
+      <div class="leaders-section anim d4">
+        <div class="leaders-label">Meneurs au monticule</div>
+        <div class="leaders-grid" id="leaders-lanceurs">
+          <!-- générés par JS -->
+        </div>
+      </div>
+
+      <div class="table-wrapper anim d4">
+        <table id="table-lanceurs">
+          <thead>
+            <tr>
+              <th onclick="sortTable('lanceurs','nom')">Joueur</th>
+              <th>Lat.</th>
+              <th onclick="sortTable('lanceurs','mj')" title="Matchs joués / départs">MJ</th>
+              <th onclick="sortTable('lanceurs','dep')" title="Départs">DÉP</th>
+              <th onclick="sortTable('lanceurs','v')" title="Victoires">V</th>
+              <th onclick="sortTable('lanceurs','d')" title="Défaites">D</th>
+              <th onclick="sortTable('lanceurs','mpm')" class="sorted" title="Moyenne de points mérités">MPM</th>
+              <th onclick="sortTable('lanceurs','mi')" title="Manches lancées">MI</th>
+              <th onclick="sortTable('lanceurs','rb')" title="Retraits au bâton">RB</th>
+              <th onclick="sortTable('lanceurs','bsb')" title="Buts sur balles accordés">BSB</th>
+              <th onclick="sortTable('lanceurs','cs')" title="Coups sûrs accordés">CS</th>
+              <th onclick="sortTable('lanceurs','pm')" title="Points mérités">PM</th>
+              <th onclick="sortTable('lanceurs','whip')" title="Marcheurs + frappeurs par manche">WHIP</th>
+              <th onclick="sortTable('lanceurs','k9')" title="Retraits au bâton par 9 manches">K/9</th>
+              <th onclick="sortTable('lanceurs','sv')" title="Sauvetages">SV</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-lanceurs"></tbody>
+        </table>
+        <div class="table-footer">
+          <span class="table-count" id="count-lanceurs">— lanceurs</span>
+          <div class="legend">
+            <span class="legend-item"><abbr title="Moyenne de points mérités">MPM</abbr> = Moy. pts mérités</span>
+            <span class="legend-item"><abbr title="Manches lancées">MI</abbr> = Manches lancées</span>
+            <span class="legend-item"><abbr title="Retraits au bâton">RB</abbr> = Retraits au bâton</span>
+            <span class="legend-item"><abbr title="WHIP = marcheurs + coups sûrs / manches">WHIP</abbr> = BB+H / MI</span>
+            <span class="legend-item"><abbr title="Sauvetages">SV</abbr> = Sauvetages</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /stats-page -->
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer-compact">
+    <div class="footer-id">
+      <div class="footer-dot"></div>
+      <div>
+        <div class="footer-name">Les Bisons de St-Eustache</div>
+        <div class="footer-sub">LBJEQ · DIVISION EST</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Accueil</a>
+      <a href="index.html#equipe">Équipe</a>
+      <a href="index.html#calendrier">Calendrier</a>
+      <a href="index.html#recrutement">Recrutement</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Les Bisons de St-Eustache</div>
+  </footer>
+
+  <script>
+  // ═══════════════════════════════════════════════════════════════
+  //  DONNÉES
+  // ═══════════════════════════════════════════════════════════════
+  const frappeurs = [
+    { num:27, nom:'Marco Tremblay',   pos:'SS',  main:'D/D', mj:18, ab:129, mpb:.342, cs:44, doubles:8, triples:2, cc:7, pp:28, pts:22, bsb:18, rb:21, obp:.418, slg:.558, ops:.976 },
+    { num:3,  nom:'Félix Leclerc',    pos:'2B',  main:'D/D', mj:18, ab:122, mpb:.320, cs:39, doubles:7, triples:1, cc:4, pp:19, pts:18, bsb:14, rb:24, obp:.390, slg:.467, ops:.857 },
+    { num:31, nom:'Mathieu Côté',     pos:'1B',  main:'G/D', mj:17, ab:116, mpb:.310, cs:36, doubles:9, triples:0, cc:6, pp:24, pts:16, bsb:12, rb:18, obp:.378, slg:.500, ops:.878 },
+    { num:22, nom:'Antoine Gagnon',   pos:'LF',  main:'G/G', mj:18, ab:118, mpb:.297, cs:35, doubles:6, triples:3, cc:3, pp:17, pts:20, bsb:10, rb:27, obp:.356, slg:.441, ops:.797 },
+    { num:9,  nom:'Samuel Lapointe',  pos:'C',   main:'D/D', mj:16, ab:108, mpb:.287, cs:31, doubles:5, triples:0, cc:5, pp:22, pts:13, bsb:11, rb:22, obp:.352, slg:.454, ops:.806 },
+    { num:18, nom:'Liam Bergeron',    pos:'3B',  main:'D/D', mj:17, ab:114, mpb:.272, cs:31, doubles:4, triples:1, cc:4, pp:18, pts:14, bsb:9,  rb:29, obp:.330, slg:.421, ops:.751 },
+    { num:11, nom:'Nicolas Fortin',   pos:'RF',  main:'D/D', mj:16, ab:105, mpb:.267, cs:28, doubles:5, triples:1, cc:3, pp:15, pts:12, bsb:8,  rb:25, obp:.320, slg:.400, ops:.720 },
+    { num:5,  nom:'Alex Dumont',      pos:'CF',  main:'G/G', mj:18, ab:120, mpb:.258, cs:31, doubles:4, triples:4, cc:2, pp:12, pts:19, bsb:13, rb:22, obp:.332, slg:.400, ops:.732 },
+    { num:16, nom:'Raphaël Morin',    pos:'SS',  main:'D/D', mj:12, ab:76,  mpb:.250, cs:19, doubles:3, triples:0, cc:2, pp:10, pts:8,  bsb:7,  rb:18, obp:.316, slg:.368, ops:.684 },
+    { num:24, nom:'Émile Perron',     pos:'DH',  main:'G/D', mj:15, ab:95,  mpb:.242, cs:23, doubles:4, triples:0, cc:3, pp:14, pts:9,  bsb:6,  rb:26, obp:.297, slg:.368, ops:.665 },
+    { num:33, nom:'Étienne Girard',   pos:'1B',  main:'G/G', mj:10, ab:62,  mpb:.226, cs:14, doubles:2, triples:0, cc:1, pp:7,  pts:5,  bsb:5,  rb:14, obp:.287, slg:.306, ops:.593 },
+    { num:8,  nom:'Thomas Bédard',    pos:'C',   main:'D/D', mj:11, ab:65,  mpb:.215, cs:14, doubles:2, triples:0, cc:2, pp:9,  pts:6,  bsb:4,  rb:17, obp:.271, slg:.338, ops:.609 },
+  ];
+
+  const lanceurs = [
+    { num:14, nom:'Xavier Bouchard',  lat:'D', mj:8,  dep:8,  v:6, d:1, mpm:2.14, mi:52.1, rb:61, bsb:14, cs:38, pm:12, whip:0.99, k9:10.5, sv:0 },
+    { num:7,  nom:'Olivier Savard',   lat:'G', mj:7,  dep:7,  v:5, d:2, mpm:2.87, mi:44.0, rb:48, bsb:18, cs:37, pm:14, whip:1.25, k9: 9.8, sv:0 },
+    { num:19, nom:'Charles Plante',   lat:'D', mj:6,  dep:5,  v:3, d:1, mpm:3.24, mi:33.1, rb:35, bsb:12, cs:30, pm:12, whip:1.26, k9: 9.4, sv:1 },
+    { num:41, nom:'Gabriel Roy',      lat:'D', mj:9,  dep:2,  v:2, d:0, mpm:3.55, mi:22.2, rb:28, bsb:10, cs:21, pm: 9, whip:1.37, k9:11.1, sv:3 },
+    { num:29, nom:'Tristan Marcoux',  lat:'G', mj:5,  dep:5,  v:2, d:2, mpm:4.10, mi:26.1, rb:29, bsb:15, cs:28, pm:12, whip:1.64, k9: 9.9, sv:0 },
+    { num:35, nom:'Alexis Thibault',  lat:'D', mj:8,  dep:0,  v:1, d:1, mpm:4.50, mi:16.0, rb:14, bsb:9,  cs:17, pm: 8, whip:1.63, k9: 7.9, sv:2 },
+  ];
+
+  // ═══════════════════════════════════════════════════════════════
+  //  ÉTAT DE TRI
+  // ═══════════════════════════════════════════════════════════════
+  const sortState = {
+    frappeurs: { col: 'mpb', asc: false },
+    lanceurs:  { col: 'mpm', asc: true  },
+  };
+
+  // ═══════════════════════════════════════════════════════════════
+  //  RENDU FRAPPEURS
+  // ═══════════════════════════════════════════════════════════════
+  function renderFrappeurs() {
+    const col = sortState.frappeurs.col;
+    const asc = sortState.frappeurs.asc;
+    const data = [...frappeurs].sort((a,b) => asc ? a[col]-b[col] : b[col]-a[col]);
+
+    // Leaders
+    const leaders = [
+      { cat:'Moyenne au bâton', key:'mpb', fmt: v => v.toFixed(3) },
+      { cat:'Circuits',         key:'cc',  fmt: v => v },
+      { cat:'Points produits',  key:'pp',  fmt: v => v },
+      { cat:'OPS',              key:'ops', fmt: v => v.toFixed(3) },
+    ];
+    document.getElementById('leaders-frappeurs').innerHTML = leaders.map(l => {
+      const top = [...frappeurs].sort((a,b) => b[l.key]-a[l.key])[0];
+      return `<div class="leader-card">
+        <div class="leader-cat">${l.cat}</div>
+        <div class="leader-val">${l.fmt(top[l.key])}</div>
+        <div class="leader-name">${top.nom}</div>
+        <div class="leader-num">#${top.num} · ${top.pos}</div>
+      </div>`;
+    }).join('');
+
+    // Tableau
+    const best = {
+      mpb: Math.max(...frappeurs.map(f=>f.mpb)),
+      cc:  Math.max(...frappeurs.map(f=>f.cc)),
+      pp:  Math.max(...frappeurs.map(f=>f.pp)),
+      ops: Math.max(...frappeurs.map(f=>f.ops)),
+    };
+
+    document.getElementById('tbody-frappeurs').innerHTML = data.map((f, i) => {
+      const isTop = f.mpb === best.mpb || f.cc === best.cc || f.pp === best.pp;
+      return `<tr class="${i===0 && col==='mpb' ? 'rank-1' : ''}">
+        <td>
+          <div class="player-cell">
+            <span class="player-num">${f.num}</span>
+            <div class="player-name-cell">
+              <div class="player-name">${f.nom}</div>
+              <div class="player-hand">${f.main}</div>
+            </div>
+          </div>
+        </td>
+        <td><span class="pos-tag">${f.pos}</span></td>
+        <td class="td-mono">${f.mj}</td>
+        <td class="td-mono">${f.ab}</td>
+        <td class="td-key">${f.mpb.toFixed(3)}${f.mpb===best.mpb?'<span class="rank-badge">1er</span>':''}</td>
+        <td class="td-mono">${f.cs}</td>
+        <td class="td-mono">${f.doubles}</td>
+        <td class="td-mono">${f.triples}</td>
+        <td class="td-mono${f.cc===best.cc?' td-highlight':''}">${f.cc}${f.cc===best.cc?'<span class="rank-badge">1er</span>':''}</td>
+        <td class="td-mono${f.pp===best.pp?' td-highlight':''}">${f.pp}${f.pp===best.pp?'<span class="rank-badge">1er</span>':''}</td>
+        <td class="td-mono">${f.pts}</td>
+        <td class="td-mono">${f.bsb}</td>
+        <td class="td-mono">${f.rb}</td>
+        <td class="td-mono">${f.obp.toFixed(3)}</td>
+        <td class="td-mono">${f.slg.toFixed(3)}</td>
+        <td class="td-mono${f.ops===best.ops?' td-highlight':''}">${f.ops.toFixed(3)}</td>
+      </tr>`;
+    }).join('');
+
+    document.getElementById('count-frappeurs').textContent = `${frappeurs.length} frappeurs · saison 2026`;
+
+    // Mettre à jour l'en-tête trié
+    document.querySelectorAll('#table-frappeurs thead th').forEach(th => {
+      th.classList.remove('sorted','asc');
+    });
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  //  RENDU LANCEURS
+  // ═══════════════════════════════════════════════════════════════
+  function renderLanceurs() {
+    const col = sortState.lanceurs.col;
+    const asc = sortState.lanceurs.asc;
+    // Pour MPM et WHIP: le plus bas est meilleur → asc par défaut
+    const data = [...lanceurs].sort((a,b) => asc ? a[col]-b[col] : b[col]-a[col]);
+
+    const leaders = [
+      { cat:'MPM', key:'mpm', fmt: v => v.toFixed(2), ascending: true },
+      { cat:'Victoires', key:'v', fmt: v => v, ascending: false },
+      { cat:'Retraits au bâton', key:'rb', fmt: v => v, ascending: false },
+      { cat:'WHIP', key:'whip', fmt: v => v.toFixed(2), ascending: true },
+    ];
+    document.getElementById('leaders-lanceurs').innerHTML = leaders.map(l => {
+      const sorted = [...lanceurs].sort((a,b) => l.ascending ? a[l.key]-b[l.key] : b[l.key]-a[l.key]);
+      const top = sorted[0];
+      return `<div class="leader-card">
+        <div class="leader-cat">${l.cat}${l.ascending?' (meilleur)':' (meneur)'}</div>
+        <div class="leader-val">${l.fmt(top[l.key])}</div>
+        <div class="leader-name">${top.nom}</div>
+        <div class="leader-num">#${top.num} · ${top.v}V–${top.d}D</div>
+      </div>`;
+    }).join('');
+
+    const best = {
+      mpm:  Math.min(...lanceurs.map(l=>l.mpm)),
+      rb:   Math.max(...lanceurs.map(l=>l.rb)),
+      v:    Math.max(...lanceurs.map(l=>l.v)),
+      whip: Math.min(...lanceurs.map(l=>l.whip)),
+    };
+
+    document.getElementById('tbody-lanceurs').innerHTML = data.map((l, i) => {
+      return `<tr class="${i===0 && col==='mpm'?'rank-1':''}">
+        <td>
+          <div class="player-cell">
+            <span class="player-num">${l.num}</span>
+            <div class="player-name-cell">
+              <div class="player-name">${l.nom}</div>
+              <div class="player-hand">Lanceur ${l.lat==='D'?'droitier':'gaucher'}</div>
+            </div>
+          </div>
+        </td>
+        <td><span class="pos-tag">${l.lat}</span></td>
+        <td class="td-mono">${l.mj}</td>
+        <td class="td-mono">${l.dep}</td>
+        <td class="td-mono${l.v===best.v?' td-highlight':''}">${l.v}${l.v===best.v?'<span class="rank-badge">1er</span>':''}</td>
+        <td class="td-mono">${l.d}</td>
+        <td class="td-key">${l.mpm.toFixed(2)}${l.mpm===best.mpm?'<span class="rank-badge">1er</span>':''}</td>
+        <td class="td-mono">${l.mi}</td>
+        <td class="td-mono${l.rb===best.rb?' td-highlight':''}">${l.rb}${l.rb===best.rb?'<span class="rank-badge">1er</span>':''}</td>
+        <td class="td-mono">${l.bsb}</td>
+        <td class="td-mono">${l.cs}</td>
+        <td class="td-mono">${l.pm}</td>
+        <td class="td-mono${l.whip===best.whip?' td-highlight':''}">${l.whip.toFixed(2)}</td>
+        <td class="td-mono">${l.k9.toFixed(1)}</td>
+        <td class="td-mono">${l.sv}</td>
+      </tr>`;
+    }).join('');
+
+    document.getElementById('count-lanceurs').textContent = `${lanceurs.length} lanceurs · saison 2026`;
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  //  ONGLETS
+  // ═══════════════════════════════════════════════════════════════
+  function showTab(tab, btn) {
+    document.getElementById('section-frappeurs').style.display = tab === 'frappeurs' ? '' : 'none';
+    document.getElementById('section-lanceurs').style.display  = tab === 'lanceurs'  ? '' : 'none';
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const sortSelect = document.getElementById('sortSelect');
+    if (tab === 'frappeurs') {
+      sortSelect.innerHTML = `
+        <option value="mpb">Moyenne (MPB)</option>
+        <option value="cc">Circuits</option>
+        <option value="pp">Points produits</option>
+        <option value="cs">Coups sûrs</option>
+        <option value="ops">OPS</option>`;
+      sortSelect.value = sortState.frappeurs.col;
+    } else {
+      sortSelect.innerHTML = `
+        <option value="mpm">MPM</option>
+        <option value="rb">Retraits au bâton</option>
+        <option value="v">Victoires</option>
+        <option value="mi">Manches lancées</option>
+        <option value="whip">WHIP</option>`;
+      sortSelect.value = sortState.lanceurs.col;
+    }
+    currentTab = tab;
+  }
+
+  let currentTab = 'frappeurs';
+
+  function handleSort() {
+    const val = document.getElementById('sortSelect').value;
+    if (currentTab === 'frappeurs') {
+      sortState.frappeurs.col = val;
+      // MPB et OPS: desc par défaut; circuits, PP, CS: desc
+      sortState.frappeurs.asc = false;
+      renderFrappeurs();
+    } else {
+      sortState.lanceurs.col = val;
+      // MPM et WHIP: asc (plus petit = meilleur); autres: desc
+      sortState.lanceurs.asc = val === 'mpm' || val === 'whip';
+      renderLanceurs();
+    }
+  }
+
+  function sortTable(section, col) {
+    if (section === 'frappeurs') {
+      if (sortState.frappeurs.col === col) {
+        sortState.frappeurs.asc = !sortState.frappeurs.asc;
+      } else {
+        sortState.frappeurs.col = col;
+        sortState.frappeurs.asc = (col === 'nom');
+      }
+      renderFrappeurs();
+    } else {
+      if (sortState.lanceurs.col === col) {
+        sortState.lanceurs.asc = !sortState.lanceurs.asc;
+      } else {
+        sortState.lanceurs.col = col;
+        sortState.lanceurs.asc = col === 'mpm' || col === 'whip' || col === 'nom';
+      }
+      renderLanceurs();
+    }
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  //  INIT
+  // ═══════════════════════════════════════════════════════════════
+  renderFrappeurs();
+  renderLanceurs();
+  </script>
+
+</body>
+</html>
