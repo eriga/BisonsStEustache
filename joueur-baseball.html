@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Marco Tremblay — #27</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/app-mobile-first.css">
   <style>
     :root {
       --rouge:       #c20f2f;
@@ -602,22 +603,29 @@
   </style>
 </head>
 <body>
-
-  <!-- ══ NAVIGATION (V1) ══ -->
-  <nav>
-    <a href="#" class="nav-logo">
-      <div class="logo-placeholder">MTL</div>
-      <span class="nav-team-name">Les Bisons Desjardins de St-Eustache</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#" class="active">Profil</a></li>
-      <li><a href="#">Équipe</a></li>
-      <li><a href="#">Calendrier</a></li>
-      <li><a href="#">Statistiques</a></li>
-      <li><a href="#">Nouvelles</a></li>
-      <li><span class="nav-badge">Saison 2026</span></li>
-    </ul>
-  </nav>
+        <!-- ══ NAV ══ -->
+        <nav>
+            <a href="index.html" class="nav-logo">
+                <div class="logo-circle">
+                    <img
+                        src="assets/images/bisons_logo_no_bg.png"
+                        alt="Bisons de St-Eustache"
+                    />
+                </div>
+                <span class="nav-team"
+                    >Les Bisons <span class="desjardins">Desjardins</span> de
+                    St-Eustache</span
+                >
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="#nouvelles">Nouvelles</a></li>
+                <li><a href="#equipe">Équipe</a></li>
+                <li><a href="stats.html">Statistiques</a></li>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><span class="nav-badge">Saison 2026</span></li>
+            </ul>
+        </nav>
 
   <!-- ══ HERO / NOM (V1) ══ -->
   <section class="hero anim d1">
@@ -629,7 +637,7 @@
         <span>Tremblay</span>
       </h1>
       <div class="hero-number-inline">
-        Numéro <strong>#27</strong> &nbsp;·&nbsp; 7ème saison
+        Numéro <strong>#27</strong> &nbsp;·&nbsp; 5ème saison
       </div>
     </div>
   </section>
@@ -659,28 +667,20 @@
       <!-- BIO sous la photo -->
       <div class="bio-grid">
         <div class="bio-item">
-          <span class="bio-key">Nationalité</span>
-          <span class="bio-val">🇨🇦 Canadien</span>
+          <span class="bio-key">Ville</span>
+          <span class="bio-val">Mirabel, QC</span>
         </div>
         <div class="bio-item">
           <span class="bio-key">Naissance</span>
           <span class="bio-val">14 mars 1998</span>
-        </div>
-        <div class="bio-item">
-          <span class="bio-key">Taille</span>
-          <span class="bio-val">1,88 m</span>
-        </div>
-        <div class="bio-item">
-          <span class="bio-key">Poids</span>
-          <span class="bio-val">92 kg</span>
-        </div>
+       </div>      
         <div class="bio-item">
           <span class="bio-key">Bâton / Lancer</span>
           <span class="bio-val">Droit / Droit</span>
         </div>
         <div class="bio-item">
-          <span class="bio-key">Contrat</span>
-          <span class="bio-val">6 ans · 2029</span>
+          <span class="bio-key">Ancienneté</span>
+          <span class="bio-val">5 ans</span>
         </div>
       </div>
     </div>
