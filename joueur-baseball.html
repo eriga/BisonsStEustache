@@ -128,8 +128,8 @@
     ══════════════════════════════════════════ */
     .hero {
       position: relative;
-      background-color: linear-gradient(180deg, #0d1d41 0%, var(--gris-fonce) 100%);
-      background-image: url('assets/images/IMG_8894.jpg');
+      background: url('assets/images/IMG_8894.jpg'), linear-gradient(180deg, #0d1d41 0%, var(--gris-fonce) 100%);
+      background-blend-mode:difference;
       background-size: cover;
       padding: 3.5rem 4rem 2.5rem;
       overflow: hidden;
@@ -780,6 +780,6 @@
       card.style.transform = 'rotateY(-14deg) rotateX(3deg)';
     });
   </script>
-
+        <script src="assets/js/nav.js"></script>
 </body>
 </html>
